@@ -13,6 +13,18 @@ const Login = () => {
             <SignIn>Sign In</SignIn>
           </div>
         </Nav>
+        <Section>
+          <Hero>
+            <h1>Welcome to your professional community</h1>
+            <img src="/images/login-hero.svg" alt="login hero" />
+          </Hero>
+          <Form>
+            <Google>
+              <img src="/images/google.svg" alt="google" />
+              Sign in with Google
+            </Google>
+          </Form>
+        </Section>
       </Container>
     </div>
   );
@@ -21,6 +33,8 @@ const Login = () => {
 const Container = styled.div`
   padding: 0px;
 `;
+
+//Header Start
 const Nav = styled.nav`
   align-items: center;
   display: flex;
@@ -77,5 +91,98 @@ const SignIn = styled.a`
     text-decoration: none;
   }
 `;
+//Header End
+
+//Section Start
+const Section = styled.section`
+  align-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 1128px;
+  min-height: 700px;
+  padding: 60px 0;
+  padding-bottom: 138px;
+  padding-top: 40px;
+  position: relative;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    margin: auto;
+    min-height: 0px;
+  }
+`;
+
+const Hero = styled.div`
+  width: 100%;
+
+  h1 {
+    color: #2977c9;
+    font-size: 56px;
+    font-weight: 200;
+    line-height: 70px;
+    padding-bottom: 0;
+    width: 55%;
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      line-height: 2;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  img {
+    bottom: -2px;
+    height: 670px;
+    position: absolute;
+    right: -150px;
+    width: 700px;
+
+    @media (max-width: 768px) {
+      height: initial;
+      position: initial;
+      top: 230px;
+      width: initial;
+    }
+  }
+`;
+
+const Form = styled.div`
+  margin-top: 100px;
+  width: 400px;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+    margin: auto;
+    margin-top: 20px;
+  }
+`;
+
+const Google = styled.button`
+  align-items: center;
+  background-color: #fff;
+  border-radius: 28px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 60%),
+    inset 0 0 0 2px rgb(0 0 0 / 0%) inset 0 0 0 1px rgb(0 0 0 / 0);
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  font-size: 20px;
+  height: 56px;
+  transition: all 160ms;
+  justify-content: center;
+  vertical-align: middle;
+  width: 100%;
+  z-index: 0;
+
+  &:hover {
+    background-color: rgba(207, 207, 207, 0.25);
+    color: rgba(0, 0, 0, 0.8);
+  }
+`;
+
+//Section End
 
 export default Login;
