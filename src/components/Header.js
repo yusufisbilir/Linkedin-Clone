@@ -27,32 +27,54 @@ const Header = () => {
             </NavList>
 
             <NavList>
-              <a href="/home">
+              <a>
                 <img src="/images/nav-network.svg" alt="network" />
                 <span>My Network</span>
               </a>
             </NavList>
 
             <NavList>
-              <a href="/home">
+              <a>
                 <img src="/images/nav-jobs.svg" alt="jobs" />
                 <span>Jobs</span>
               </a>
             </NavList>
 
             <NavList>
-              <a href="/home">
+              <a>
                 <img src="/images/nav-messaging.svg" alt="messages" />
                 <span>Messaging</span>
               </a>
             </NavList>
 
             <NavList>
-              <a href="/home">
+              <a>
                 <img src="/images/nav-notifications.svg" alt="notifications" />
                 <span>Notifications</span>
               </a>
             </NavList>
+
+            <User>
+              <a>
+                <img src="/images/user.svg" alt="user" />
+                <span>Me</span>
+                <img src="/images/down-icon.svg" alt="down" />
+              </a>
+
+              <SignOut>
+                <a>Sign Out</a>
+              </SignOut>
+            </User>
+
+            <Work>
+              <a>
+                <img src="/images/nav-work.svg" alt="work" />
+                <span>
+                  Work
+                  <img src="/images/down-icon.svg" alt="down" />
+                </span>
+              </a>
+            </Work>
           </NavListWrap>
         </Nav>
       </Content>
@@ -192,6 +214,46 @@ const NavList = styled.li`
       }
     }
   }
+`;
+
+const SignOut = styled.div`
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+  display: none;
+  font-size: 16px;
+  height: 40px;
+  position: absolute;
+  text-align: center;
+  top: 45px;
+  transition-duration: 167ms;
+  widt: 100%;
+`;
+
+const User = styled(NavList)`
+  a > svg {
+    width: 24px;
+    border-radius: 50%;
+  }
+  a > img {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+  }
+  span {
+    align-items: center;
+    display: flex;
+  }
+
+  &:hover {
+    ${SignOut} {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+  }
+`;
+const Work = styled(User)`
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
 export default Header;
