@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+//components
+import Main from './Main';
+import Leftside from './Leftside';
+import Rightside from './Rightside';
+
 const Home = () => {
   return (
     <Container>
@@ -12,6 +17,11 @@ const Home = () => {
           moving.
         </p>
       </Section>
+      <Layout>
+        <Leftside />
+        <Main />
+        <Rightside />
+      </Layout>
     </Container>
   );
 };
@@ -42,6 +52,20 @@ const Section = styled.section`
     font-weight: 600;
   }
   @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 5px;
+  }
+`;
+
+const Layout = styled.div`
+  display: grid;
+  column-gap: 25px;
+  grid-template-areas: 'leftside main rightside';
+  grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr);
+  margin: 25px 0;
+  row-gap: 25px;
+  @media (max-width: 768px) {
+    display: flex;
     flex-direction: column;
     padding: 0 5px;
   }
