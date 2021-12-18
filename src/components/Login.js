@@ -1,34 +1,34 @@
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { signInApi } from '../actions';
+import { Redirect } from 'react-router-dom';
 
 const Login = (props) => {
   return (
-    <div>
-      <Container>
-        <Nav>
-          <a href="/">
-            <img src="/images/login-logo.svg" alt="linkedin" />
-          </a>
-          <div>
-            <Join>Join Now</Join>
-            <SignIn>Sign In</SignIn>
-          </div>
-        </Nav>
-        <Section>
-          <Hero>
-            <h1>Welcome to your professional community</h1>
-            <img src="/images/login-hero.svg" alt="login hero" />
-          </Hero>
-          <Form>
-            <Google onClick={() => props.signIn()}>
-              <img src="/images/google.svg" alt="google" />
-              Sign in with Google
-            </Google>
-          </Form>
-        </Section>
-      </Container>
-    </div>
+    <Container>
+      {props.user && <Redirect to="/home" />}
+      <Nav>
+        <a href="/">
+          <img src="/images/login-logo.svg" alt="linkedin" />
+        </a>
+        <div>
+          <Join>Join Now</Join>
+          <SignIn>Sign In</SignIn>
+        </div>
+      </Nav>
+      <Section>
+        <Hero>
+          <h1>Welcome to your professional community</h1>
+          <img src="/images/login-hero.svg" alt="login hero" />
+        </Hero>
+        <Form>
+          <Google onClick={() => props.signIn()}>
+            <img src="/images/google.svg" alt="google" />
+            Sign in with Google
+          </Google>
+        </Form>
+      </Section>
+    </Container>
   );
 };
 
@@ -187,7 +187,9 @@ const Google = styled.button`
 //Section End
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    user: state.userState.user,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
