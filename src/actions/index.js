@@ -18,3 +18,13 @@ export function signInApi() {
       });
   };
 }
+
+export function getUserAuth() {
+  return (dispatch) => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        dispatch(setUser(user));
+      }
+    });
+  };
+}
