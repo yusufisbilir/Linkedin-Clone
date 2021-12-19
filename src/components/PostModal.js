@@ -71,6 +71,7 @@ const Container = styled.div`
   bottom: 0;
   z-index: 9999;
   background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s;
 `;
 
 const Content = styled.div`
