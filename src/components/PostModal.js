@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
+import { connect } from 'react-redux';
 
 function PostModal(props) {
   const [editorText, setEditorText] = useState('');
@@ -49,8 +50,17 @@ function PostModal(props) {
             </Header>
             <SharedContent>
               <UserInfo>
-                <img src="/images/user.svg" alt="user" />
-                <span>Name</span>
+                {props.user.photoURL ? (
+                  <>
+                    <img src={props.user.photoURL} alt="user" />
+                    <span>{props.user.displayName}</span>
+                  </>
+                ) : (
+                  <>
+                    <img src="/images/user.svg" alt="user" />
+                    <span>Name</span>
+                  </>
+                )}
               </UserInfo>
               <Editor>
                 <textarea
@@ -273,4 +283,14 @@ const UploadImage = styled.div`
   }
 `;
 
-export default PostModal;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostModal);
