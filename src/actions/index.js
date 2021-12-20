@@ -128,7 +128,7 @@ export function getArticlesApi() {
   return async (dispatch) => {
     let payload;
     const articlesRef = collection(db, 'articles');
-    const q = query(articlesRef, orderBy('actor.date'));
+    const q = query(articlesRef, orderBy('actor.date', 'desc'));
     const querySnapshot = await getDocs(q);
     payload = await querySnapshot.docs.map((doc) => doc.data());
     dispatch(getArticles(payload));
