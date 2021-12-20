@@ -4,7 +4,7 @@ import articleReducer from './articleReducer';
 
 const rootReducer = combineReducers({
   userState: userReducer,
-  articleReducer: articleReducer,
+  articleState: articleReducer,
 });
 
 export default rootReducer;
