@@ -3,11 +3,16 @@ import { uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
 
 import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
-import { SET_USER } from './actionType';
+import { SET_USER, SET_LOADING_STATUS } from './actionType';
 
 export const setUser = (payload) => ({
   type: SET_USER,
   user: payload,
+});
+
+export const setLoading = (status) => ({
+  type: SET_LOADING_STATUS,
+  status: status,
 });
 
 export function signInApi() {
@@ -46,6 +51,7 @@ export function signOutApi() {
 
 export function postArticleApi(payload) {
   return (dispatch) => {
+    dispatch(setLoading(true));
     if (payload.image !== '') {
       const storageRef = ref(storage, `images/${payload.image.name}`);
       const uploadTask = uploadBytesResumable(storageRef, payload.image);
@@ -70,9 +76,9 @@ export function postArticleApi(payload) {
         (error) => {
           console.log('upload error');
         },
-        () => {
+        async () => {
           // Handle successful uploads on complete
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             addDoc(collection(db, 'articles'), {
               actor: {
                 description: payload.user.email,
@@ -86,6 +92,7 @@ export function postArticleApi(payload) {
               description: payload.description,
             });
           });
+          dispatch(setLoading(false));
         }
       );
     } else if (payload.video) {
@@ -101,6 +108,7 @@ export function postArticleApi(payload) {
         comments: 0,
         description: payload.description,
       });
+      dispatch(setLoading(false));
     }
   };
 }
